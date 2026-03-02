@@ -78,7 +78,7 @@ from scripts.utils import load_counts
 - Always specify `dtype` on `pd.read_csv()` for columns that will be used as keys or binary indicators:
 
 ```python
-df = pd.read_csv(DATA_DIR / "ukb.csv", dtype={"eid": str, "event": int})
+df = pd.read_csv(DATA_DIR / "counts.csv", dtype={"gene_id": str, "sample": str})
 ```
 
 - Never use `inplace=True` — it causes silent failures and unclear code:
