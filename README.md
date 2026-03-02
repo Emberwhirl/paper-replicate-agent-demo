@@ -79,7 +79,7 @@ Every script and report gets a score (0–100). Scores below threshold block the
 ## What's Included
 
 <details>
-<summary><strong>4 agents, 10 skills, 13 rules, 4 hooks</strong> (click to expand)</summary>
+<summary><strong>4 agents, 15 skills, 13 rules, 4 hooks</strong> (click to expand)</summary>
 
 ### Agents (`.claude/agents/`)
 
@@ -104,6 +104,11 @@ Every script and report gets a score (0–100). Scores below threshold block the
 | `/interview-me` | Interactive interview to formalize a research idea |
 | `/devils-advocate` | Challenge design decisions before committing |
 | `/commit` | Stage, commit, create PR, and merge to main |
+| `/scanpy-basics` | Standard scRNA-seq analysis: QC, normalization, clustering, DE, visualization |
+| `/kallisto-bustools-import` | Import kb-python output and filter empty droplets (knee/inflection) |
+| `/single-cell-rna-qc` | Specialized MAD-based QC with comprehensive visualizations |
+| `/single-cell-integration-ingest-bbknn` | Batch correction via ingest (label transfer) or BBKNN (symmetric) |
+| `/scvi-tools` | Deep learning models: scVI, scANVI, totalVI, PeakVI, MultiVI, DestVI, veloVI |
 
 ### Rules (`.claude/rules/`)
 
