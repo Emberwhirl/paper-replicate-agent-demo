@@ -1,6 +1,8 @@
 ---
 name: single-cell-rna-qc
 description: Specialized quality control on single-cell RNA-seq data using MAD-based filtering and comprehensive visualizations. Use only when users specifically request detailed QC analysis, MAD-based outlier detection, or need specialized QC beyond what scanpy-basics provides. For standard QC as part of normal analysis, use scanpy-basics instead.
+argument-hint: "[path to h5ad or 10X h5 file]"
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # Single-Cell RNA-seq Quality Control

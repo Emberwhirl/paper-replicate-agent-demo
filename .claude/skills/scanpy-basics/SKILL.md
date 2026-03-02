@@ -1,6 +1,8 @@
 ---
 name: scanpy-basics
 description: Standard single-cell RNA-seq analysis pipeline including QC, normalization, dimensionality reduction (PCA/UMAP/t-SNE), clustering, differential expression, and visualization. This is the default skill for most single-cell analysis tasks. Use specialized skills only when specifically requested: single-cell-rna-qc for MAD-based filtering, single-cell-integration-ingest-bbknn for batch correction, or scvi-tools for deep learning methods.
+argument-hint: "[path to h5ad, 10X h5, or directory with scRNA-seq data]"
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # Scanpy: Single-Cell Analysis

@@ -96,10 +96,11 @@ BBKNN performs symmetric integration by modifying how neighbors are selected acr
 
 ```python
 # Adjust for different scenarios
-sc.external.pp.bbknn(adata, batch_key='batch',
-                     neighbors_within_batch=5)  # Stronger mixing
-sc.external.pp.bbknn(adata, batch_key='batch',
-                     neighbors_within_batch=2)  # Gentler mixing
+import bbknn
+bbknn.bbknn(adata, batch_key='batch',
+            neighbors_within_batch=5)  # Stronger mixing
+bbknn.bbknn(adata, batch_key='batch',
+            neighbors_within_batch=2)  # Gentler mixing
 ```
 
 **n_pcs (default: 50)**
@@ -149,7 +150,8 @@ ingest_query(adata_query, adata_ref, label_key='celltype')
 # Second: Combine and apply BBKNN for visualization
 adata_combined = ad.concat([adata_ref, adata_query], label='batch')
 sc.pp.pca(adata_combined)
-sc.external.pp.bbknn(adata_combined, batch_key='batch')
+import bbknn
+bbknn.bbknn(adata_combined, batch_key='batch')
 sc.tl.umap(adata_combined)
 ```
 

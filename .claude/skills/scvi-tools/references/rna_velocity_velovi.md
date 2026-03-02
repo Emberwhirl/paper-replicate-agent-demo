@@ -108,7 +108,7 @@ scv.pp.moments(adata, n_pcs=30, n_neighbors=30)
 
 ```python
 # Setup for veloVI
-scvi.model.VELOVI.setup_anndata(
+scvi.external.VELOVI.setup_anndata(
     adata,
     spliced_layer="spliced",
     unspliced_layer="unspliced"
@@ -119,7 +119,7 @@ scvi.model.VELOVI.setup_anndata(
 
 ```python
 # Create and train veloVI model
-vae = scvi.model.VELOVI(adata)
+vae = scvi.external.VELOVI(adata)
 
 vae.train(
     max_epochs=500,
@@ -324,14 +324,14 @@ def run_velocity_analysis(
     scv.pp.moments(adata, n_pcs=30, n_neighbors=30)
     
     # Setup veloVI
-    scvi.model.VELOVI.setup_anndata(
+    scvi.external.VELOVI.setup_anndata(
         adata,
         spliced_layer=spliced_layer,
         unspliced_layer=unspliced_layer
     )
     
     # Train
-    model = scvi.model.VELOVI(adata)
+    model = scvi.external.VELOVI(adata)
     model.train(max_epochs=max_epochs, early_stopping=True)
     
     # Get results
@@ -366,14 +366,14 @@ sc.pl.umap(adata_velocity, color="latent_time")
 
 ```python
 # For multi-batch data, include batch in model
-scvi.model.VELOVI.setup_anndata(
+scvi.external.VELOVI.setup_anndata(
     adata,
     spliced_layer="spliced",
     unspliced_layer="unspliced",
     batch_key="batch"
 )
 
-model = scvi.model.VELOVI(adata)
+model = scvi.external.VELOVI(adata)
 model.train()
 ```
 

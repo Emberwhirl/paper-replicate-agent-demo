@@ -188,8 +188,8 @@ def integrate_bbknn(adata, batch_key='batch', neighbors_within_batch=3, verbose=
     if verbose:
         print("  Computing batch-balanced neighbors...")
 
-    sc.external.pp.bbknn(adata, batch_key=batch_key,
-                         neighbors_within_batch=neighbors_within_batch)
+    bbknn.bbknn(adata, batch_key=batch_key,
+                neighbors_within_batch=neighbors_within_batch)
 
     if verbose:
         print("  Computing UMAP on corrected graph...")
