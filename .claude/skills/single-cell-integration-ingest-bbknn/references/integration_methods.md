@@ -88,6 +88,8 @@ BBKNN performs symmetric integration by modifying how neighbors are selected acr
 
 ### BBKNN Parameters
 
+**Note:** BBKNN is a separate package (`pip install bbknn`). Import directly as `import bbknn` — the `sc.external.pp.bbknn` wrapper is deprecated in scanpy ≥1.10.
+
 **neighbors_within_batch (default: 3)**
 - Number of neighbors from each batch
 - Total neighbors = neighbors_within_batch × n_batches
