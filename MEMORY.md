@@ -33,7 +33,7 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:design] Quality standard for guide additions: useful + pedagogically strong + drives usage + leaves great impression + improves upon starting fresh + no redundancy + not slow. All 7 criteria must hold.
 
-[LEARN:design] Generic means working for any academic workflow: pure LaTeX (no Quarto), pure R (no LaTeX), Python/Jupyter, any domain (not just econometrics). Test recommendations across use cases.
+[LEARN:design] Generic means working for any academic workflow: pure LaTeX (no Quarto), pure R (no LaTeX), Python/Jupyter, any domain (not just bioinformatics). Test recommendations across use cases.
 
 ## File Organization
 
@@ -55,7 +55,7 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:skills] Skills need 3 sections minimum: Instructions (step-by-step), Examples (concrete scenarios), Troubleshooting (common errors) → users can debug independently.
 
-[LEARN:skills] Domain-specific examples beat generic ones: citation checker (psychology), protocol validator (biology), regression formatter (economics) → shows adaptability.
+[LEARN:skills] Domain-specific examples beat generic ones: citation checker (psychology), protocol validator (biology), pipeline reviewer (bioinformatics) → shows adaptability.
 
 ## Memory System
 
@@ -73,7 +73,7 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 ## Domain Adaptation
 
-[LEARN:domain] This workflow was adapted from UK Biobank epidemiology to RNA-seq bioinformatics (bulk + scRNA-seq). Key changes: PDF → Markdown input, survival analysis → DE/clustering methods, UKB field IDs → GEO/SRA accessions + gene/Ensembl IDs, Stata→R pitfall tables → RNA-seq pitfall tables, added methods-explanation phase for novel computational methods.
+[LEARN:domain] This workflow was originally adapted from a general-purpose academic replication framework to focus on RNA-seq bioinformatics (bulk + scRNA-seq). Key changes: PDF → Markdown input, added DE/clustering/trajectory methods, GEO/SRA accessions + gene/Ensembl IDs, RNA-seq pitfall tables, added methods-explanation phase for novel computational methods.
 
 [LEARN:domain] Paper inputs must be in Markdown (.md) format. If only PDF is available, convert with pandoc first: `pandoc input.pdf -o output.md`. Always verify conversion quality for Methods and Results sections.
 

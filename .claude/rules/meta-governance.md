@@ -16,7 +16,7 @@ Understanding this distinction is critical for deciding what to commit, what to 
 
 ### Identity 2: Public Template
 - Others fork this repo to bootstrap their own academic workflows
-- They use different domains (epidemiology, proteomics, metagenomics, not just RNA-seq)
+- They use different domains (proteomics, metagenomics, spatial transcriptomics, not just RNA-seq)
 - They use different tools (pure LaTeX, pure R, Python, Jupyter)
 - They need generic patterns, not our specific decisions
 
