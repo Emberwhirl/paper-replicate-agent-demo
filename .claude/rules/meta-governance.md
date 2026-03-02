@@ -142,8 +142,8 @@ Always use R 4.3.1 with Bioconductor 3.18 for our pipeline.
 **Good (framework-oriented):**
 ```markdown
 # R Environment Rule
-Lock R and Bioconductor versions in renv.lock for reproducibility.
-Configure in CLAUDE.md for your setup.
+Use R 4.5+ and Bioconductor 3.22+ unless the paper requires specific older versions.
+Lock versions in renv.lock for reproducibility. Configure in CLAUDE.md for your setup.
 ```
 
 ### Provide Examples from Multiple Domains

@@ -74,4 +74,4 @@ paths:
 |-----|--------|-----|
 | `DESeqDataSetFromMatrix` without `~1` design | Error if no covariates | Use `design = ~1` for intercept-only |
 | `FindAllMarkers` without `only.pos=TRUE` | Slow and bloated output | Set `only.pos=TRUE` or `min.pct=0.25` |
-| `RunUMAP` without `seed.use` | Non-reproducible UMAP | Always set `seed.use = 42` or paper's seed |
+| `RunUMAP` without `seed.use` | Non-reproducible UMAP | Always set `seed.use = 2333` or paper's seed |

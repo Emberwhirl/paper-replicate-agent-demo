@@ -100,4 +100,4 @@ Generate structured research questions, testable hypotheses, and empirical strat
 - **Be creative but grounded.** Push beyond obvious questions, but every suggestion must be empirically feasible.
 - **Think like a referee.** For each causal question, immediately identify the identification challenge.
 - **Consider data availability.** A brilliant question with no available data is not actionable.
-- **Suggest specific datasets** where possible (GEO, SRA, ENCODE, GTEx, Human Cell Atlas, TCGA, ArrayExpress, etc.).
+- **Suggest specific datasets** where possible (GEO, SRA, GSA, GSA-Human, ENCODE, GTEx, Human Cell Atlas, TCGA, ArrayExpress, etc.).

@@ -151,7 +151,7 @@ These are the tough questions a top referee would likely raise:
 
 - **Be constructive.** Every criticism should come with a suggestion.
 - **Be specific.** Reference exact sections, equations, tables.
-- **Think like a referee at Nature Methods or Genome Biology.** What would make them reject?
+- **Think like a referee at a top-tier journal (Cell / Nature / Science) or high-quality method journal (Nature Methods / Genome Biology / Nucleic Acids Research).** What would make them reject?
 - **Distinguish fatal flaws from minor issues.** Not everything is equally important.
 - **Acknowledge what's done well.** Good research deserves recognition.
 - **Do NOT fabricate details.** If you can't read a section clearly, say so.

@@ -24,9 +24,12 @@ my-rnaseq-agent/
 ├── .claude/                     # Rules, skills, agents, hooks
 ├── papers/                      # Source Markdown papers and original replication packages
 │   └── [PaperName]/
-│       ├── original_paper.md    # Paper in Markdown format
-│       ├── supplementary.md     # Supplementary material in Markdown format
-│       ├── *.R / *.py           # Original analysis code (if provided)
+│       ├── original_paper.md           # Paper in Markdown format
+│       ├── supplementary.md            # Supplementary material in Markdown format
+│       ├── original_paper_attachment/  # Figures/images referenced by the Markdown files
+│       ├── code/                       # Original analysis code (if provided — may be a package)
+│       │   ├── *.R / *.py              # Individual scripts, or full package structure
+│       │   └── README.md
 │       └── README.md
 ├── data/                        # Datasets (gitignored — can be large/controlled-access)
 ├── replications/                # Our replication scripts and outputs
@@ -84,7 +87,7 @@ python scripts/quality_score.py replications/[PaperName]/R/replicate.R
 
 | Command | What It Does |
 |---------|-------------|
-| `/replicate-paper [paper.md] [data]` | Full 6-phase replication pipeline |
+| `/replicate-paper [paper.md] [data] [code]` | Full 6-phase replication pipeline |
 | `/data-analysis [dataset]` | End-to-end R analysis |
 | `/review-r [file]` | R code quality review |
 | `/review-paper [file]` | Manuscript review |
