@@ -62,6 +62,9 @@ Produce a thorough, actionable code review report. You do NOT edit files — you
 - [ ] Normalization method matches the paper (log-normalize, scran, VST, TMM, CPM)
 - [ ] Design matrix and contrast direction match the paper exactly
 - [ ] For DE: test type is correct (Wald vs. LRT for DESeq2; quasi-likelihood vs. exact for edgeR)
+- [ ] For DE: paired test applied when paper uses a paired/blocked design (e.g., `~patient + condition`)
+- [ ] For scRNA-seq: QC thresholds (min genes, max mitochondrial fraction, min library size) match paper
+- [ ] For scRNA-seq: doublet detection applied only when paper applies it, with matching parameters
 - [ ] For scRNA-seq: clustering resolution, number of PCs, and neighbor graph parameters match paper
 - [ ] Random seed is set for all stochastic steps (UMAP, clustering, doublet detection)
 - [ ] Reference level is explicitly set to match paper's reference group

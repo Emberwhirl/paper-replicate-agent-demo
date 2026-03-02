@@ -1,6 +1,6 @@
 # Skill: /replicate-paper
 
-**Trigger:** `/replicate-paper [paper.md] [data_dir]` or "replicate this paper"
+**Trigger:** `/replicate-paper [paper.md] [data_dir] [code_dir]` or "replicate this paper"
 
 **Purpose:** Full 6-phase autonomous replication of a bulk or single-cell RNA-seq paper. Produces Python and R scripts plus a polished validation report. When the paper introduces a novel computational method or workflow, also produces a detailed plain-language explanation of the method.
 
@@ -12,9 +12,14 @@
 /replicate-paper papers/AuthorYear/original_paper.md data/AuthorYear/
 ```
 
+With original code:
+```
+/replicate-paper papers/AuthorYear/original_paper.md data/AuthorYear/ papers/AuthorYear/code/
+```
+
 Or with just: "replicate this paper" (Claude will ask for paths if not provided).
 
-**Input format:** Papers must be provided as Markdown (`.md`) files, not PDF. Convert PDFs to Markdown before invoking this skill.
+**Input format:** Papers must be provided as Markdown (`.md`) files. The user is responsible for converting PDFs to Markdown before invoking this skill (e.g., using docling or other conversion tools). Figures referenced by the paper should be placed in `papers/AuthorYear/original_paper_attachment/`.
 
 ---
 
@@ -82,7 +87,7 @@ Save to: `reports/[paper_name]_methods_explanation.md`
 
 **Goal:** Map the paper's methods to our dataset before writing a single line of code.
 
-1. Read original R/Python code (if provided in replication package)
+1. Read original R/Python code from `[code_dir]` if provided (may be individual scripts or a full package structure)
 2. Map each variable name in original code → corresponding variable in our dataset
 3. Identify methodological steps: preprocessing, normalization, feature selection, model fitting, clustering/DE testing, visualization
 4. Flag any steps where original code differs from Methods text (use the paper, not the code, as ground truth)

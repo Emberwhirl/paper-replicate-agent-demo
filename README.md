@@ -1,8 +1,8 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18723722.svg)](https://doi.org/10.5281/zenodo.18723722)
 
-# RNA-seq Empirical Replication Agent
+# Bulk and Single-Cell RNA-seq Empirical Replication Agent
 
-A structured Claude Code workflow for **empirically replicating published research** using bulk and single-cell RNA-seq data. Special thanks to Pedro H. C. Sant'Anna for the claude-code-my-workflow repository, which inspired this workflow. You describe a paper; Claude plans the replication approach, writes R/Python scripts, validates outputs against published targets, documents discrepancies, and reports results — like a research contractor who handles the full pipeline. When the paper introduces a novel computational method or workflow, Claude also produces a detailed, plain-language explanation of how the method works.
+A structured Claude Code workflow for **empirically replicating published research** using bulk and single-cell RNA-seq data. Special thanks to 朱晨 | 遗传社科研究 for providing an excellent Claude Code workflow framework. You describe a paper; Claude plans the replication approach, writes R/Python scripts, validates outputs against published targets, documents discrepancies, and reports results — like a research contractor who handles the full pipeline. When the paper introduces a novel computational method or workflow, Claude also produces a detailed, plain-language explanation of how the method works.
 
 ---
 
@@ -179,14 +179,18 @@ The `data/` folder is intentionally excluded from version control (data can be l
 
 ```
 my-rnaseq-agent/
-├── papers/           # Markdown papers + original replication packages
-├── data/             # RNA-seq data (gitignored)
-├── replications/     # Our R/Python replication scripts + outputs
-├── reports/          # Polished final reports
-├── quality_reports/  # Plans, specs, session logs, replication targets
-├── explorations/     # Sandbox for experimental analyses
+├── papers/                  # Markdown papers + original replication packages
+│   └── [PaperName]/
+│       ├── original_paper.md
+│       ├── original_paper_attachment/  # Figures referenced by the paper
+│       └── code/                       # Original analysis code (if provided)
+├── data/                    # RNA-seq data (gitignored)
+├── replications/            # Our R/Python replication scripts + outputs
+├── reports/                 # Polished final reports
+├── quality_reports/         # Plans, specs, session logs, replication targets
+├── explorations/            # Sandbox for experimental analyses
 ├── master_supporting_docs/  # Reference papers and methods docs
-└── scripts/          # Utility scripts and shared R functions
+└── scripts/                 # Utility scripts and shared R functions
 ```
 
 ---
