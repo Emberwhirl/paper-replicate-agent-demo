@@ -54,7 +54,7 @@ Repeat
 - **Seed convention:** `random.seed(YYYYMMDD)` + `numpy.random.seed(YYYYMMDD)` at top of every stochastic Python script; `set.seed(YYYYMMDD)` at top of every stochastic R script
 - **Figure standards:** 300 DPI, white or transparent background, journal-quality axes, colorblind-safe palette
 - **Color palette:** `viridis` / `colorblind` R palette; Okabe-Ito palette for Python (`matplotlib`)
-- **Tolerance thresholds:** integers exact; point estimates ±0.01; SEs ±0.05; p-values same significance bracket; percentages ±0.1pp
+- **Tolerance thresholds:** integers exact; log fold changes ±0.05; adjusted p-values same significance bracket; cluster counts exact; cluster proportions ±1pp
 
 ---
 
@@ -63,6 +63,7 @@ Repeat
 **Visual:** 300 DPI, Okabe-Ito palette, `bbox_inches='tight'` for Python figures
 **Reporting:** Structured Markdown report with comparison tables (paper value vs. ours vs. diff)
 **Session logs:** Always (post-plan, incremental, end-of-session)
+**Replication:** Flag all near-misses (within 2× tolerance); investigate before proceeding to extensions
 **Replication:** Flag all near-misses (within 2× tolerance); investigate before proceeding to extensions
 
 ---
