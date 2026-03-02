@@ -28,7 +28,7 @@ paths:
 | Major | Missing dtype specification on `pd.read_csv()` | -5 |
 | Major | Figure not saved at 300 DPI | -5 |
 | Minor | Non-pathlib path construction (string concatenation) | -3 |
-| Minor | Missing inline comment on Stata→Python translation decision | -2 |
+| Minor | Missing inline comment on parameter choice or normalization decision | -2 |
 
 ## R Scripts (.R)
 
@@ -65,8 +65,9 @@ Save to `quality_reports/merges/YYYY-MM-DD_[branch-name].md`.
 
 | Quantity | Tolerance | Rationale |
 |----------|-----------|-----------|
-| Integers (N, events, counts) | Exact match | No reason for any difference |
-| Point estimates (OR, HR, β, mean) | ±0.01 | Rounding in paper display |
-| Standard errors | ±0.05 | Bootstrap/clustering variation |
-| P-values | Same significance bracket (< 0.05, < 0.01, < 0.001) | Exact p may differ slightly |
-| Percentages | ±0.1pp | Display rounding |
+| Integers (N cells, samples, genes detected) | Exact match | No reason for any difference |
+| Log fold changes (LFC) | ±0.05 | Rounding in paper display + shrinkage estimator variation |
+| Adjusted p-values | Same significance bracket (< 0.05, < 0.01, < 0.001) | Exact p may differ across software versions |
+| Number of DE genes (at a threshold) | ±5% | Minor filtering or rounding differences |
+| Cluster count | Exact match | Resolution is deterministic given seed |
+| Cluster proportions | ±1pp | Rounding in paper display |

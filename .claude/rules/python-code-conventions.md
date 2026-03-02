@@ -53,7 +53,7 @@ torch.manual_seed(YYYYMMDD)
 
 All imports at the top of the file. Never inside functions. Order:
 1. Standard library (`os`, `random`, `pathlib`)
-2. Third-party (`numpy`, `pandas`, `statsmodels`, `lifelines`)
+2. Third-party (`numpy`, `pandas`, `scanpy`, `anndata`, `pydeseq2`)
 3. Local modules
 
 ```python
@@ -64,11 +64,11 @@ import random
 # Third party
 import numpy as np
 import pandas as pd
-import statsmodels.formula.api as smf
-from lifelines import CoxPHFitter
+import scanpy as sc        # scRNA-seq
+# import pydeseq2          # bulk RNA-seq
 
 # Local
-from scripts.utils import load_ukb_extract
+from scripts.utils import load_counts
 ```
 
 ---
@@ -105,21 +105,22 @@ Use established scientific Python libraries, not ad-hoc implementations:
 
 | Task | Library |
 |------|---------|
-| Survival analysis (Cox PH) | `lifelines.CoxPHFitter` or `statsmodels.duration` |
-| OLS / logistic / Poisson | `statsmodels.formula.api` |
-| Fixed effects panel | `linearmodels.PanelOLS` or `pyhdfe` |
-| Bayesian models | `pymc` |
-| GWAS / PRS | `pandas-plink`, `bed-reader` |
+| Single-cell analysis (Python) | `scanpy`, `anndata` |
+| Bulk RNA-seq DE (Python) | `pydeseq2` |
+| Pseudotime / trajectory | `scFates`, `cellrank` |
+| Batch integration | `harmonypy`, `scvi-tools` |
+| Doublet detection | `scrublet`, `scDblFinder` (via rpy2 or standalone) |
+| Gene set enrichment | `gseapy` |
+| Visualization | `matplotlib`, `seaborn`, `scanpy.pl` |
 
 Save all model results as structured files, not just printed output:
 
 ```python
-# Good
-results_df.to_parquet(RESULTS_DIR / "cox_table2.parquet")
+# Good — AnnData object (single-cell)
+adata.write_h5ad(RESULTS_DIR / "adata_processed.h5ad")
 
-import pickle
-with open(RESULTS_DIR / "model_fit.pkl", "wb") as f:
-    pickle.dump(fit, f)
+# Good — DE results table
+results_df.to_parquet(RESULTS_DIR / "de_results_group1_vs_group2.parquet")
 ```
 
 ---
@@ -156,22 +157,21 @@ Comment WHY, not WHAT. The code shows what; comments explain non-obvious decisio
 
 ```python
 # Bad
-# Drop rows where age is missing
-df = df.dropna(subset=["age"])
+# Drop rows where count is zero
+df = df[df["count"] > 0]
 
 # Good
-# Paper excludes participants with missing age at baseline (Methods, p. 4)
-# This affects ~0.3% of the sample (N=1,502 → N=1,497)
-df = df.dropna(subset=["age"])
+# Paper applies a minimum count filter of 10 reads in at least 3 samples (Methods, p. 4)
+# This removes lowly-expressed genes before normalization
+keep = (counts >= 10).sum(axis=1) >= 3
+counts = counts[keep]
 ```
 
-Always comment Stata→Python translation decisions:
+Always comment translation decisions or parameter choices:
 
 ```python
-# TRANSLATION NOTE: Stata 'stset' computes time-at-risk from study entry.
-# Here we compute it manually as (exit_date - entry_date).dt.days / 365.25
-# to match the paper's person-years denominator.
-df["follow_up_years"] = (df["exit_date"] - df["entry_date"]).dt.days / 365.25
+# REPLICATION NOTE: Paper uses VST normalization (DESeq2::varianceStabilizingTransformation)
+# not log-CPM. pydeseq2 does not expose VST; using R DESeq2 via subprocess for this step.
 ```
 
 ---
@@ -183,7 +183,8 @@ df["follow_up_years"] = (df["exit_date"] - df["entry_date"]).dt.days / 365.25
 """
 Replication: [Paper Author (Year)]
 Date: YYYY-MM-DD
-Original code: Stata / R
+Data: [GEO/SRA accession]
+Genome: [assembly + GTF version]
 Python version: 3.X.Y
 Key packages: see requirements.txt
 
@@ -195,6 +196,7 @@ from pathlib import Path
 import random
 import numpy as np
 import pandas as pd
+import scanpy as sc        # for scRNA-seq; replace with pydeseq2 for bulk
 
 # ── Reproducibility ────────────────────────────────────────────────────────
 random.seed(20260220)
@@ -210,9 +212,11 @@ FIGURES_DIR.mkdir(exist_ok=True)
 
 # ── 1. Load Data ───────────────────────────────────────────────────────────
 
-# ── 2. Sample Construction ─────────────────────────────────────────────────
+# ── 2. Quality Control ─────────────────────────────────────────────────────
 
-# ── 3. Model Fitting ───────────────────────────────────────────────────────
+# ── 3. Normalization / Preprocessing ──────────────────────────────────────
 
-# ── 4. Save Results ────────────────────────────────────────────────────────
+# ── 4. Analysis (DE / Clustering / Trajectory) ────────────────────────────
+
+# ── 5. Save Results ────────────────────────────────────────────────────────
 ```

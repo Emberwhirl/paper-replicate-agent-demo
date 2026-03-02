@@ -1,7 +1,7 @@
-# CLAUDE.MD -- UKB Empirical Replication Agent
+# CLAUDE.MD -- RNA-seq Empirical Replication Agent
 
-**Project:** UKB Empirical Replication Agent
-**Institution:** China Agricultural University
+**Project:** RNA-seq Empirical Replication Agent
+**Institution:** [YOUR INSTITUTION]
 **Branch:** main
 
 ---
@@ -19,16 +19,16 @@
 ## Folder Structure
 
 ```
-my-ukb-agent/
+my-rnaseq-agent/
 ├── CLAUDE.md                    # This file
 ├── .claude/                     # Rules, skills, agents, hooks
-├── papers/                      # Source PDFs and original replication packages
+├── papers/                      # Source Markdown papers and original replication packages
 │   └── [PaperName]/
-│       ├── original_paper.pdf
-│       ├── supplementary.pdf
-│       ├── *.do / *.R           # Original Stata/R code (if provided)
+│       ├── original_paper.md    # Paper in Markdown format
+│       ├── supplementary.md     # Supplementary material in Markdown format
+│       ├── *.R / *.py           # Original analysis code (if provided)
 │       └── README.md
-├── data/                        # Datasets (gitignored — sensitive UKB data)
+├── data/                        # Datasets (gitignored — can be large/controlled-access)
 ├── replications/                # Our replication scripts and outputs
 │   └── [PaperName]/
 │       ├── R/replicate.R
@@ -84,7 +84,7 @@ python scripts/quality_score.py replications/[PaperName]/R/replicate.R
 
 | Command | What It Does |
 |---------|-------------|
-| `/replicate-paper [paper.pdf] [data]` | Full 6-phase replication pipeline |
+| `/replicate-paper [paper.md] [data]` | Full 6-phase replication pipeline |
 | `/data-analysis [dataset]` | End-to-end R analysis |
 | `/review-r [file]` | R code quality review |
 | `/review-paper [file]` | Manuscript review |
@@ -101,14 +101,16 @@ python scripts/quality_score.py replications/[PaperName]/R/replicate.R
 
 | Paper | Status | Targets | Pass | Fail | Notes |
 |-------|--------|---------|------|------|-------|
-| Gracner et al. (2024) | IN PROGRESS | — | — | — | Sugar tax, UKB |
+| [AuthorYear] | — | — | — | — | bulk/scRNA-seq |
 
 ---
 
-## UKB Data Notes
+## RNA-seq Data Notes
 
-- **Data location:** `data/` (gitignored — sensitive)
-- **Application ID:** [YOUR UKB APPLICATION ID]
-- **Withdrawal list:** Always apply latest withdrawal list before any analysis
-- **Field IDs:** Verify all field IDs against UKB Data Showcase; note instance (baseline vs. repeat)
-- **ICD codes:** Map ICD-9 (pre-2016 HES) and ICD-10 (post-2016) per paper's Supplementary Table
+- **Data location:** `data/` (gitignored — can be large or controlled-access)
+- **Public data:** Download from GEO (accession GSExxxxxx) or SRA; document accession IDs in replication scripts
+- **Genome/annotation:** Record genome assembly (e.g., GRCh38) and GTF version (e.g., Ensembl 110) used for alignment/quantification
+- **Gene IDs:** Use Ensembl gene IDs as primary keys; map to gene symbols only for display; verify ID versions match between paper and your annotation
+- **Normalization:** Match paper's normalization method exactly (raw counts, CPM, TPM, VST, log-normalized); document deviations
+- **Batch correction:** Apply batch correction (e.g., ComBat, Harmony) only if the paper does; document batch variables used
+- **Filtering:** Match paper's minimum count/cell thresholds before running differential expression or clustering

@@ -57,16 +57,16 @@ Based on the research question:
 ### Phase 4: Publication-Ready Output
 
 **Tables:**
-- Use `modelsummary` for regression tables (preferred) or `stargazer`
-- Include all standard elements: coefficients, SEs, significance stars, N, R-squared
-- Export as `.tex` for LaTeX inclusion and `.html` for quick viewing
+- Use `modelsummary` for regression/model summary tables, or format DE results as tibbles
+- For DE/enrichment tables: export as `.csv` for portability and `.html` for quick viewing
+- **Do NOT export `.tex` files** — use Markdown or HTML for all outputs
 
 **Figures:**
 - Use `ggplot2` with project theme
 - Set `bg = "transparent"` for Beamer compatibility
 - Include proper axis labels (sentence case, units)
 - Export with explicit dimensions: `ggsave(width = X, height = Y)`
-- Save as both `.pdf` and `.png`
+- Save as `.png` (300 DPI minimum) and optionally `.pdf`
 
 ### Phase 5: Save and Review
 

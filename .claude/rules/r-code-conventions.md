@@ -28,8 +28,12 @@ paths:
 ## 3. Domain Correctness
 
 <!-- Customize for your field's known pitfalls -->
-- Verify estimator implementations match slide formulas
-- Check known package bugs (document below in Common Pitfalls)
+- Verify normalization method matches the paper (log-normalize, scran, VST, TMM, etc.)
+- Check that the design matrix and contrast direction match the paper exactly
+- For DE analysis: verify test type (Wald vs. LRT for DESeq2; quasi-likelihood vs. exact for edgeR)
+- For scRNA-seq: verify clustering resolution, number of PCs, neighbor graph metric match paper
+- For trajectory: verify root cell assignment and pseudotime direction match paper
+- Check `.claude/rules/r-code-conventions.md` for known pitfalls
 
 ## 4. Visual Identity
 
@@ -73,6 +77,10 @@ saveRDS(result, file.path(out_dir, "descriptive_name.rds"))
 |---------|--------|------------|
 | Missing `bg = "transparent"` | White boxes on slides | Always include in ggsave() |
 | Hardcoded paths | Breaks on other machines | Use relative paths |
+| Wrong normalization method | Irreproducible DE results | Match paper's method exactly |
+| Default reference level | Reversed effect direction | Explicitly `relevel()` factor to match paper |
+| No seed for UMAP/clustering | Non-reproducible embeddings | `set.seed()` + pass `seed.use` in Seurat |
+| Ambient RNA not removed | Over-estimated gene expression | Apply CellBender/SoupX only if paper does |
 
 ## 7. Line Length & Mathematical Exceptions
 

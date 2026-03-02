@@ -1,7 +1,8 @@
 ---
 paths:
-  - "Slides/**/*.tex"
   - "Quarto/**/*.qmd"
+  - "replications/**"
+  - "reports/**"
   - "docs/**"
 ---
 
@@ -15,39 +16,35 @@ paths:
 3. Verify images display by reading 2-3 image files to confirm valid content
 4. Check HTML source for correct image paths
 5. Check for overflow by scanning dense slides
-6. Verify environment parity: every Beamer box environment has a CSS equivalent in the QMD
-7. Report verification results
+6. Report verification results
 
-## For LaTeX/Beamer Slides:
-1. Compile with xelatex and check for errors
-2. Open the PDF to verify figures render
-3. Check for overfull hbox warnings
+## For R Replication Scripts:
+1. Run `Rscript replications/[paper]/R/replicate.R`
+2. Verify output files (RDS, CSV, PNG/PDF figures) were created with non-zero size
+3. Spot-check key results (DE gene counts, LFCs, cluster counts) for reasonable values
+4. Confirm figures are saved at the expected paths
 
-## For TikZ Diagrams in HTML/Quarto:
-1. Browsers **cannot** display PDF images inline — ALWAYS convert to SVG
-2. Use SVG (vector format) for crisp rendering: `pdf2svg input.pdf output.svg`
-3. **NEVER use PNG for diagrams** — PNG is raster and looks blurry
-4. Verify SVG files contain valid XML/SVG markup
-5. Copy SVGs to `docs/Figures/LectureX/` via `sync_to_docs.sh`
-6. **Freshness check:** Before using any TikZ SVG, verify extract_tikz.tex matches current Beamer source
+## For Python Replication Scripts:
+1. Run `python replications/[paper]/python/replicate.py`
+2. Verify output files (h5ad, parquet, PNG figures) were created with non-zero size
+3. Spot-check key results for reasonable values
 
-## For R Scripts:
-1. Run `Rscript scripts/R/filename.R`
-2. Verify output files (PDF, RDS) were created with non-zero size
-3. Spot-check estimates for reasonable magnitude
+## For Replication Reports (.md):
+1. Open the report and confirm all sections are present
+2. Verify the results comparison table is populated (not empty)
+3. Confirm the verdict (REPLICATED / PARTIAL / FAILED) is stated
+4. Confirm the environment section lists package versions and data accession
 
 ## Common Pitfalls:
-- **PDF images in HTML**: Browsers don't render PDFs inline → convert to SVG
-- **Relative paths**: `../Figures/` works from `Quarto/` but not from `docs/slides/` → use `sync_to_docs.sh`
 - **Assuming success**: Always verify output files exist AND contain correct content
-- **Stale TikZ SVGs**: extract_tikz.tex diverges from Beamer source → always diff-check
+- **Missing seed**: Stochastic steps (UMAP, clustering) produce different results without fixed seed
+- **Wrong normalization**: Check that the normalization step matches the paper before running DE
 
 ## Verification Checklist:
 ```
 [ ] Output file created successfully
-[ ] No compilation/render errors
-[ ] Images/figures display correctly
-[ ] Paths resolve in deployment location (docs/)
-[ ] Opened in browser/viewer to confirm visual appearance
+[ ] No runtime errors
+[ ] Figures/results saved at expected paths
+[ ] Key statistics within tolerance of paper targets
 [ ] Reported results to user
 ```

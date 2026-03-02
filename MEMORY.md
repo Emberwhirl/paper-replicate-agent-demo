@@ -70,3 +70,13 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 [LEARN:meta] Dogfooding principles must be enforced: plan-first, spec-then-plan, quality gates, session logs → we follow our own guide.
 
 [LEARN:meta] Template development work (building infrastructure, docs) doesn't create session logs in quality_reports/ → those are for user work (slides, analysis), not meta-work. Keeps template clean for users who fork.
+
+## Domain Adaptation
+
+[LEARN:domain] This workflow was adapted from UK Biobank epidemiology to RNA-seq bioinformatics (bulk + scRNA-seq). Key changes: PDF → Markdown input, survival analysis → DE/clustering methods, UKB field IDs → GEO/SRA accessions + gene/Ensembl IDs, Stata→R pitfall tables → RNA-seq pitfall tables, added methods-explanation phase for novel computational methods.
+
+[LEARN:domain] Paper inputs must be in Markdown (.md) format. If only PDF is available, convert with pandoc first: `pandoc input.pdf -o output.md`. Always verify conversion quality for Methods and Results sections.
+
+[LEARN:domain] No LaTeX/.tex output anywhere in the workflow. All tables exported as CSV or HTML; all figures as PNG (300 DPI) or PDF. Reports saved as Markdown.
+
+[LEARN:domain] For novel computational methods papers, always run Phase 1b (methods explanation) of the replicate-paper skill. Save to `reports/[paper_name]_methods_explanation.md`. This is separate from the replication report.
