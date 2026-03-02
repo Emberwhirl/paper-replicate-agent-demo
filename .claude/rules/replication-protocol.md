@@ -16,19 +16,20 @@ paths:
 
 Before any coding:
 
-- [ ] Read the full paper PDF; identify **every table and figure** that presents empirical results
+- [ ] Read the full paper Markdown file; identify **every table and figure** that presents empirical results
 - [ ] Record gold standard values in `quality_reports/[paper_name]_replication_targets.md`:
 
 ```markdown
 ## Replication Targets: [Paper Author (Year)]
 
-| Target | Table/Figure | Value | SE/CI | N | Notes |
-|--------|-------------|-------|-------|---|-------|
-| Main HR | Table 2, Col 1 | 1.43 | (1.21–1.68) | 502,369 | Primary specification |
+| Target | Table/Figure | Value | Stat | N | Notes |
+|--------|-------------|-------|------|---|-------|
+| Top DE gene LFC | Table 2, Col 1 | 3.42 | padj=0.0001 | 12,845 cells | Primary comparison |
 ```
 
-- [ ] Note the **Methods section** in full: sample inclusion/exclusion criteria, covariates, model type, SE clustering, software used
-- [ ] Identify the **original code language** (Stata / R / Python / SAS) and what, if any, replication package exists
+- [ ] Note the **Methods section** in full: organism, tissue, data type (bulk/scRNA-seq), QC thresholds, normalization method, model type, statistical test, software versions
+- [ ] Identify the **original code language** (R / Python) and whether a replication package / GEO supplementary code is provided
+- [ ] If the paper introduces a novel computational method, flag for Phase 1b (methods explanation) in the replicate-paper skill
 
 ---
 
@@ -36,10 +37,11 @@ Before any coding:
 
 - [ ] Read the paper's replication README (if provided)
 - [ ] Inventory replication package: language, data files, scripts, outputs
+- [ ] Locate or download data (GEO accession, SRA run IDs); document in script header
 - [ ] Load provided dataset; compare to paper's described sample:
-  - N (total, exposed, events)
-  - Key variable distributions (means, % missing)
-  - Inclusion/exclusion criteria — apply them in the paper's stated order
+  - N (total cells/samples, per group, after QC)
+  - Library size distribution, mitochondrial fraction, gene detection rate
+  - QC thresholds — apply them in the paper's stated order
 - [ ] Document any **discrepancies between available data and paper description** before coding
 
 ---
@@ -48,32 +50,41 @@ Before any coding:
 
 - [ ] Follow `r-code-conventions.md` and `python-code-conventions.md` for all coding standards
 - [ ] Translate line-by-line initially — **do NOT improve during replication**
-- [ ] Match original specification exactly: covariates, sample restrictions, clustering, SE method
-- [ ] Save all intermediate datasets as `.rds` (R) or `.parquet` / `.pkl` (Python)
+- [ ] Match original specification exactly: normalization method, feature selection, model formula, test type
+- [ ] Save all intermediate datasets as `.rds` (R) or `.h5ad` / `.parquet` (Python)
 
-### Stata → R Translation Pitfalls
+### Bulk RNA-seq Pitfalls
 
-| Stata | R Equivalent | Trap |
-|-------|-------------|------|
-| `stset time, failure(event==1) id(id)` | `Surv(time, event==1)` | Verify time-at-risk calculation is identical; `stset` supports late entry |
-| `stcox x covars, cluster(id)` | `coxph(Surv(t,e) ~ x + covars, cluster=id)` | `cluster=` uses Lin-Wei-Yang SE; verify matches Stata robust |
-| `reg y x, cluster(id)` | `feols(y ~ x, cluster = ~id)` | Stata clusters df-adjust differently from some R packages |
-| `areg y x, absorb(id)` | `feols(y ~ x \| id)` | Check demeaning method matches |
-| `probit` | `glm(family=binomial(link="probit"))` | Reference category must match |
-| `logit` | `glm(family=binomial(link="logit"))` | Check if `xi:` prefix changes reference level |
-| `bootstrap, reps(999)` | Depends on method | Match seed, reps, and bootstrap type exactly |
-| `stcrreg` (competing risks) | `crr()` in `cmprsk` or `coxph(id=..., istate=...)` | Fine-Gray vs cause-specific hazard — must match paper |
+| Step | Common Trap | Correct Approach |
+|------|-------------|-----------------|
+| Normalization | Using CPM when paper uses VST or TMM | Match paper's normalization exactly; document choice |
+| Filtering | Applying different min-count threshold | Use paper's exact `filterByExpr` or count cutoff |
+| Model formula | Omitting batch or covariates | Match paper's design matrix exactly |
+| DE test | Using Wald test when paper uses LRT | Specify `test="LRT"` if paper used likelihood ratio |
+| Log fold change | Using unshrunken LFC instead of `lfcShrink` | Apply shrinkage only if paper does; use same shrinkage method |
+| Reference level | Wrong reference level in factor | Explicitly `relevel()` to match paper's reference group |
+| Multiple testing | Using BH when paper uses Bonferroni | Match paper's `p.adjust.method` exactly |
 
-### Stata → Python Translation Pitfalls
+### Single-Cell RNA-seq Pitfalls
 
-| Stata | Python Equivalent | Trap |
-|-------|-----------------|------|
-| `stset time, failure(event==1)` | `lifelines.CoxPHFitter(event_col=...)` | Verify time variable and event coding are identical |
-| `stcox x covars, cluster(id)` | `CoxPHFitter().fit(df, duration_col, event_col, cluster_col=...)` | lifelines clustering may differ from Stata; compare SEs |
-| `reg y x, cluster(id)` | `statsmodels.OLS().fit(cov_type='cluster', cov_kwds={'groups': ...})` | Check cluster column matches |
-| `reghdfe y x, absorb(id year)` | `linearmodels.PanelOLS` or `pyhdfe` | FE absorption algorithm must be verified |
-| `logit y x` | `statsmodels.Logit().fit()` | Optimization algorithm (Newton-Raphson vs BFGS) may give slightly different convergence |
-| `stcrreg` (competing risks) | `lifelines.AalenJohansenFitter` or `scikit-survival` | Fine-Gray subdistribution HR — verify method |
+| Step | Common Trap | Correct Approach |
+|------|-------------|-----------------|
+| Doublet removal | Skipping doublet detection if paper applies it | Apply same doublet tool (DoubletFinder, scDblFinder) with same parameters |
+| Normalization | Using `NormalizeData` (log-normalize) when paper uses scran | Match normalization method; pooling-based scran ≠ per-cell log-normalize |
+| Highly variable genes | Different n_top_genes / flavor | Match paper's HVG selection method and number exactly |
+| PCA dims | Using different number of PCs for downstream | Match paper's `dims` parameter for neighbor graph |
+| Clustering resolution | Using default resolution instead of paper's value | Set `resolution` to paper's value; results are resolution-sensitive |
+| UMAP seed | No fixed seed for UMAP | Set `seed.use` (Seurat) or `random_state` (scanpy) to match paper |
+| Cluster labels | Misassigning cell type labels | Verify marker genes used for annotation match paper's Supplementary Table |
+| Trajectory | Wrong root cell or start cluster | Set root as specified in paper; trajectory topology is root-sensitive |
+
+### Python-Specific Pitfalls
+
+| Step | Common Trap | Correct Approach |
+|------|-------------|-----------------|
+| AnnData layers | Using `.X` when paper uses raw counts in `layers["counts"]` | Check which layer the paper normalizes from |
+| scanpy neighbors | Different `n_neighbors` or metric | Match `sc.pp.neighbors` parameters exactly |
+| pydeseq2 | Different convergence tolerance | Note package version; results may differ slightly from R DESeq2 |
 
 ---
 
@@ -83,31 +94,39 @@ Before any coding:
 
 | Type | Tolerance | Rationale |
 |------|-----------|-----------|
-| Integers (N, events, counts) | Exact match | No reason for any difference |
-| Point estimates (OR, HR, β) | ±0.01 | Rounding in paper display |
-| Standard errors | ±0.05 | Bootstrap/clustering variation |
-| P-values | Same significance bracket (< 0.05, < 0.01, < 0.001) | Exact p may differ slightly |
-| Percentages | ±0.1pp | Display rounding |
+| Integers (N cells, samples, genes) | Exact match | No reason for any difference |
+| Log fold changes (LFC) | ±0.05 | Rounding in paper display + shrinkage estimator variation |
+| Adjusted p-values | Same significance bracket (< 0.05, < 0.01, < 0.001) | Exact p may differ across software versions |
+| Number of DE genes | ±5% | Minor filtering differences |
+| Cluster count | Exact match | Resolution is deterministic given seed |
+| Cluster proportions | ±1pp | Rounding in paper display |
 
 ### If Mismatch
 
 **Do NOT proceed to extensions.** Isolate which step introduces the difference:
-1. Sample size mismatch → check inclusion/exclusion criteria order, missing data handling
-2. Point estimate mismatch → check covariate list, reference categories, model defaults
-3. SE mismatch → check clustering level, SE computation method
-4. P-value bracket mismatch → check multiple testing correction, one- vs two-sided test
+1. Sample size mismatch → check QC thresholds, filtering order, minimum count/cell parameters
+2. LFC mismatch → check normalization method, reference level, LFC shrinkage
+3. Adjusted p-value bracket mismatch → check multiple testing method, pre-filtering of genes
+4. Cluster count mismatch → check resolution, number of PCs, neighbor graph parameters, random seed
 
 Document all investigations even if unresolved.
 
-### UK Biobank-Specific Considerations
+### RNA-seq-Specific Considerations
 
-- **Field IDs:** Always verify against UKB Data Showcase; field meanings change across instances (baseline vs. repeat assessment)
-- **Withdrawn participants:** Must be excluded using the latest withdrawal list
-- **Assessment centre:** Include as covariate unless paper explicitly excludes it
-- **Genotyping array:** Include as covariate in genetic analyses unless paper excludes
-- **Related individuals:** Apply the paper's stated kinship threshold (typically 3rd-degree, KING > 0.0442)
-- **ICD codes:** Map ICD-9 (pre-2016 HES) and ICD-10 (post-2016) to phenotypes per paper's Supplementary Table
-- **Date of death:** Primary cause vs. any mention — match paper's definition exactly
+**Bulk RNA-seq:**
+- **Genome/annotation version:** Verify alignment and GTF versions match paper; gene-level counts depend on annotation
+- **Strand specificity:** Confirm strandedness setting (unstranded, forward, reverse) matches paper's library prep protocol
+- **Pseudocount:** Match paper's pseudocount for log-transformation (typically +1 but confirm)
+- **Batch variable:** Include batch covariate only if paper includes it; batch-corrected vs. uncorrected gives different results
+- **Replicate structure:** Verify sample groupings and contrast direction match paper exactly
+
+**Single-cell RNA-seq:**
+- **Cell ranger / STARsolo version:** Counts can differ between versions; note version used
+- **Ambient RNA removal:** Apply CellBender or SoupX only if paper does; document parameters
+- **Doublet method:** Match tool (DoubletFinder, scDblFinder) and `pN` / `pK` parameters
+- **Cell cycle regression:** Apply only if paper applies it; affects clustering
+- **Integration method:** Match paper's batch integration tool (Harmony, Seurat CCA, scVI); parameters matter
+- **Cell type annotation:** Use same marker gene lists; note if labels differ — do not relabel silently
 
 ### Replication Report
 
@@ -116,9 +135,9 @@ Save to `replications/[paper_name]/validation_report.md` AND final polished vers
 ```markdown
 # Replication Report: [Paper Author (Year)]
 **Date:** [YYYY-MM-DD]
-**Original language:** [Stata/R/Python/SAS]
-**R translation:** [replications/[paper]/R/replicate.R]
-**Python translation:** [replications/[paper]/python/replicate.py]
+**Original language:** [R / Python]
+**R replication:** [replications/[paper]/R/replicate.R]
+**Python replication:** [replications/[paper]/python/replicate.py]
 
 ## Summary
 - **Targets checked / Passed / Failed:** N / M / K
@@ -133,7 +152,7 @@ Save to `replications/[paper_name]/validation_report.md` AND final polished vers
 - **Target:** X | **Investigation:** ... | **Resolution:** ...
 
 ## Environment
-- Python version, R version, key packages (with versions), data source, UKB application ID
+- R version, Python version, key packages (with versions), data accession, genome assembly, GTF version, seed
 ```
 
 ---
@@ -143,5 +162,5 @@ Save to `replications/[paper_name]/validation_report.md` AND final polished vers
 After replication is verified (all targets PASS or discrepancies documented with explanation):
 
 - [ ] Commit replication scripts: `"Replicate [Paper] Table X -- all targets match"`
-- [ ] Now extend with additional analyses (sensitivity checks, subgroups, alternative exposures)
+- [ ] Now extend with additional analyses (alternative normalizations, additional cell types, gene set enrichment)
 - [ ] Each extension builds on the verified baseline

@@ -1,16 +1,16 @@
 ---
 name: review-paper
-description: Comprehensive manuscript review covering argument structure, econometric specification, citation completeness, and potential referee objections
+description: Comprehensive manuscript review covering argument structure, computational methods, statistical correctness, citation completeness, and potential referee objections. Optimized for bioinformatics and computational biology papers.
 disable-model-invocation: true
-argument-hint: "[paper filename in master_supporting_docs/ or path to .tex/.pdf]"
+argument-hint: "[paper filename in papers/ or master_supporting_docs/ — must be .md format]"
 allowed-tools: ["Read", "Grep", "Glob", "Write", "Task"]
 ---
 
 # Manuscript Review
 
-Produce a thorough, constructive review of an academic manuscript — the kind of report a top-journal referee would write.
+Produce a thorough, constructive review of an academic manuscript — the kind of report a top computational biology journal referee would write.
 
-**Input:** `$ARGUMENTS` — path to a paper (.tex, .pdf, or .qmd), or a filename in `master_supporting_docs/`.
+**Input:** `$ARGUMENTS` — path to a paper (`.md`), or a filename in `papers/` or `master_supporting_docs/`. Papers must be in Markdown format.
 
 ---
 
@@ -18,10 +18,11 @@ Produce a thorough, constructive review of an academic manuscript — the kind o
 
 1. **Locate and read the manuscript.** Check:
    - Direct path from `$ARGUMENTS`
+   - `papers/$ARGUMENTS/original_paper.md`
    - `master_supporting_docs/supporting_papers/$ARGUMENTS`
    - Glob for partial matches
 
-2. **Read the full paper** end-to-end. For long PDFs, read in chunks (5 pages at a time).
+2. **Read the full paper** end-to-end (Markdown sections: Abstract → Introduction → Methods → Results → Discussion → Supplementary).
 
 3. **Evaluate across 6 dimensions** (see below).
 
@@ -42,22 +43,22 @@ Produce a thorough, constructive review of an academic manuscript — the kind o
 - Are the conclusions supported by the evidence?
 - Are limitations acknowledged?
 
-### 2. Identification Strategy
-- Is the causal claim credible?
-- What are the key identifying assumptions? Are they stated explicitly?
-- Are there threats to identification (omitted variables, reverse causality, measurement error)?
-- Are robustness checks adequate?
-- Is the estimator appropriate for the research design?
+### 2. Computational Methods
+- Is the novel method (if any) clearly described step-by-step?
+- Are key algorithmic choices (distance metrics, model assumptions, optimization strategy) justified?
+- Are comparison to existing methods (DESeq2 vs. edgeR; Seurat vs. scran) fair and comprehensive?
+- Is the method's time and memory complexity discussed?
+- Is software availability and documentation addressed (GitHub link, version)?
 
-### 3. Econometric Specification
-- Correct standard errors (clustered? robust? bootstrap?)?
-- Appropriate functional form?
-- Sample selection issues?
-- Multiple testing concerns?
-- Are point estimates economically meaningful (not just statistically significant)?
+### 3. Statistical Correctness
+- Is the normalization method appropriate for the data type and downstream analysis?
+- Are multiple testing corrections applied (BH, Bonferroni, IHW)?
+- Are batch effects accounted for if present?
+- Is the sample size sufficient for the claims made?
+- Are robustness checks or sensitivity analyses included?
 
 ### 4. Literature Positioning
-- Are the key papers cited?
+- Are the key papers cited (DESeq2, edgeR, Seurat, scanpy, relevant method papers)?
 - Is prior work characterized accurately?
 - Is the contribution clearly differentiated from existing work?
 - Any missing citations that a referee would flag?
@@ -67,13 +68,14 @@ Produce a thorough, constructive review of an academic manuscript — the kind o
 - Academic tone
 - Consistent notation throughout
 - Abstract effectively summarizes the paper
-- Tables and figures are self-contained (clear labels, notes, sources)
+- Tables and figures are self-contained (clear labels, notes, accession numbers)
 
-### 6. Presentation
-- Are tables and figures well-designed?
-- Is notation consistent throughout?
-- Are there any typos, grammatical errors, or formatting issues?
-- Is the paper the right length for the contribution?
+### 6. Reproducibility and Data Availability
+- Is data deposited in a public repository (GEO, SRA, Zenodo)?
+- Is accession number provided?
+- Is code available (GitHub, Zenodo)?
+- Is the software environment (R/Python versions, package versions) documented?
+- Would an independent group be able to reproduce the main results?
 
 ---
 
@@ -101,7 +103,7 @@ Produce a thorough, constructive review of an academic manuscript — the kind o
 ## Major Concerns
 
 ### MC1: [Title]
-- **Dimension:** [Identification / Econometrics / Argument / Literature / Writing / Presentation]
+- **Dimension:** [Methods / Statistics / Argument / Literature / Writing / Reproducibility]
 - **Issue:** [Specific description]
 - **Suggestion:** [How to address it]
 - **Location:** [Section/page/table if applicable]
@@ -135,11 +137,11 @@ These are the tough questions a top referee would likely raise:
 | Dimension | Rating (1-5) |
 |-----------|-------------|
 | Argument Structure | [N] |
-| Identification | [N] |
-| Econometrics | [N] |
+| Computational Methods | [N] |
+| Statistical Correctness | [N] |
 | Literature | [N] |
 | Writing | [N] |
-| Presentation | [N] |
+| Reproducibility | [N] |
 | **Overall** | **[N]** |
 ```
 
@@ -149,7 +151,7 @@ These are the tough questions a top referee would likely raise:
 
 - **Be constructive.** Every criticism should come with a suggestion.
 - **Be specific.** Reference exact sections, equations, tables.
-- **Think like a referee at a top-5 journal.** What would make them reject?
+- **Think like a referee at Nature Methods or Genome Biology.** What would make them reject?
 - **Distinguish fatal flaws from minor issues.** Not everything is equally important.
 - **Acknowledge what's done well.** Good research deserves recognition.
 - **Do NOT fabricate details.** If you can't read a section clearly, say so.

@@ -59,13 +59,13 @@ Produce a thorough, actionable code review report. You do NOT edit files — you
 
 ### 5. DOMAIN CORRECTNESS
 <!-- Customize this section for your field -->
-- [ ] Estimator implementations match the formulas shown on slides
-- [ ] Standard errors use the appropriate method
-- [ ] DGP specifications in simulations match the paper being replicated
-- [ ] Treatment effects are the correct estimand (e.g., ATT vs ATE)
+- [ ] Normalization method matches the paper (log-normalize, scran, VST, TMM, CPM)
+- [ ] Design matrix and contrast direction match the paper exactly
+- [ ] For DE: test type is correct (Wald vs. LRT for DESeq2; quasi-likelihood vs. exact for edgeR)
+- [ ] For scRNA-seq: clustering resolution, number of PCs, and neighbor graph parameters match paper
+- [ ] Random seed is set for all stochastic steps (UMAP, clustering, doublet detection)
+- [ ] Reference level is explicitly set to match paper's reference group
 - [ ] Check `.claude/rules/r-code-conventions.md` for known pitfalls
-
-**Flag:** Implementation doesn't match theory, wrong estimand, known bugs.
 
 ### 6. FIGURE QUALITY
 - [ ] Consistent color palette (check your project's standard colors)
