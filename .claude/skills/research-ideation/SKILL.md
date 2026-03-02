@@ -31,7 +31,7 @@ Generate structured research questions, testable hypotheses, and empirical strat
    - **Data requirements:** What data would be needed? Is it available?
    - **Key assumptions:** What must hold for the strategy to be valid?
    - **Potential pitfalls:** Common threats to identification
-   - **Related literature:** 2-3 papers using similar approaches
+   - **Related literature:** 2-3 papers using similar approaches (e.g., DESeq2 paper, Seurat paper, relevant trajectory methods)
 
 4. **Rank the questions** by feasibility and contribution.
 
@@ -60,10 +60,10 @@ Generate structured research questions, testable hypotheses, and empirical strat
 **Hypothesis:** [Testable prediction]
 
 **Identification Strategy:**
-- **Method:** [e.g., Difference-in-Differences]
-- **Treatment:** [What varies and when]
-- **Control group:** [Comparison units]
-- **Key assumption:** [e.g., Parallel trends]
+- **Method:** [e.g., Differential expression with DESeq2, scRNA-seq clustering + trajectory analysis]
+- **Comparison:** [Groups or conditions being compared]
+- **Control group:** [Reference/baseline condition]
+- **Key assumption:** [e.g., Cells are representative of the tissue; batch effects are adequately corrected]
 
 **Data Requirements:**
 - [Dataset 1 — what it provides]
@@ -100,4 +100,4 @@ Generate structured research questions, testable hypotheses, and empirical strat
 - **Be creative but grounded.** Push beyond obvious questions, but every suggestion must be empirically feasible.
 - **Think like a referee.** For each causal question, immediately identify the identification challenge.
 - **Consider data availability.** A brilliant question with no available data is not actionable.
-- **Suggest specific datasets** where possible (FRED, Census, PSID, administrative data, etc.).
+- **Suggest specific datasets** where possible (GEO, SRA, GSA, GSA-Human, ENCODE, GTEx, Human Cell Atlas, TCGA, ArrayExpress, etc.).

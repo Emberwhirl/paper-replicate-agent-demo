@@ -25,10 +25,10 @@ Conduct a structured literature search and synthesis on the given topic.
    - Read any existing `.bib` file for papers already in the project
 
 3. **Organize findings** into these categories:
-   - **Theoretical contributions** — models, frameworks, mechanisms
-   - **Empirical findings** — key results, effect sizes, data sources
-   - **Methodological innovations** — new estimators, identification strategies, inference methods
-   - **Open debates** — unresolved disagreements in the literature
+   - **Methodological contributions** — new algorithms, models, frameworks
+   - **Empirical findings** — key biological results, effect sizes, data sources (GEO/SRA accessions)
+   - **Computational innovations** — new tools, pipelines, benchmarks, software
+   - **Open debates** — unresolved methodological disagreements (e.g., normalization strategies, doublet removal, trajectory methods)
 
 4. **Identify gaps and opportunities:**
    - What questions remain unanswered?
@@ -57,7 +57,7 @@ Conduct a structured literature search and synthesis on the given topic.
 
 ### [Author (Year)] — [Short Title]
 - **Main contribution:** [1-2 sentences]
-- **Method:** [Identification strategy / data]
+- **Method:** [Algorithm / tool / data type / organism]
 - **Key finding:** [Result with effect size if available]
 - **Relevance:** [Why it matters for our research]
 

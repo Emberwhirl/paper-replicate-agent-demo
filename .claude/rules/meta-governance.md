@@ -12,11 +12,11 @@ Understanding this distinction is critical for deciding what to commit, what to 
 - We actively develop lecture slides, guides, and documentation
 - We accumulate learnings specific to our setup and workflow
 - We test new features and iterate on infrastructure
-- We have institutional context (Emory, econometrics, specific tools)
+- We have institutional context (bioinformatics RNA-seq workflow, specific tools)
 
 ### Identity 2: Public Template
 - Others fork this repo to bootstrap their own academic workflows
-- They use different domains (biology, physics, CS, not just economics)
+- They use different domains (epidemiology, proteomics, metagenomics, not just RNA-seq)
 - They use different tools (pure LaTeX, pure R, Python, Jupyter)
 - They need generic patterns, not our specific decisions
 
@@ -38,7 +38,7 @@ When creating or modifying content, ask:
 **SPECIFIC (keep local or gitignore):**
 - Machine-specific paths (`TEXINPUTS=../Preambles` on macOS)
 - Tool versions (`Quarto 1.3.x vs 1.4.x`)
-- Institutional requirements (Emory thesis format)
+- Institutional requirements (lab-specific pipeline conventions)
 - Personal preferences (90/100 quality gate for this project)
 - API keys, credentials, local workarounds
 
@@ -67,8 +67,8 @@ When creating or modifying content, ask:
 **Purpose:** Machine-specific and user-specific learnings
 
 **What goes here:**
-- Machine setup: `[LEARN:latex] XeLaTeX on macOS requires TEXINPUTS=../Preambles`
-- Tool quirks: `[LEARN:quarto] Version 1.4.x has nested div bug, use 1.3.x`
+- Machine setup: `[LEARN:r] renv on macOS requires explicit CRAN mirror setup`
+- Tool quirks: `[LEARN:scanpy] Version 1.10.x changed default UMAP params, use random_state=42 explicitly`
 - Local paths: `[LEARN:files] Bibliography at ~/Dropbox/References/main.bib`
 - Personal workflow: `[LEARN:workflow] I prefer 90/100 for lecture slides, 80/100 for explorations`
 
@@ -135,29 +135,29 @@ When creating or modifying content, ask:
 
 **Bad (too specific):**
 ```markdown
-# Beamer Compilation Rule
-Always use XeLaTeX with TEXINPATHS=../Preambles for Emory slides.
+# Environment Rule
+Always use R 4.3.1 with Bioconductor 3.18 for our pipeline.
 ```
 
 **Good (framework-oriented):**
 ```markdown
-# LaTeX Compilation Rule
-Use project-specific TEXINPATHS if preambles are in separate directory.
-Configure in CLAUDE.md for your setup.
+# R Environment Rule
+Use R 4.5+ and Bioconductor 3.22+ unless the paper requires specific older versions.
+Lock versions in renv.lock for reproducibility. Configure in CLAUDE.md for your setup.
 ```
 
 ### Provide Examples from Multiple Domains
 
 **Bad (single use case):**
 ```markdown
-Example: Econometric panel data analysis
+Example: scRNA-seq differential expression analysis
 ```
 
 **Good (diverse use cases):**
 ```markdown
 Examples:
-- Econometrics: Panel regression with fixed effects
-- Biology: Lab protocol validation
+- Bioinformatics: Bulk RNA-seq DE with DESeq2
+- Bioinformatics: scRNA-seq clustering with Seurat
 - Physics: Numerical simulation workflow
 ```
 
@@ -181,7 +181,7 @@ Configure bibliography location in CLAUDE.md:
 ### Templates Can Show Specific Examples
 
 It's okay for README and guide to say:
-> "This workflow was developed for Econ 730 at Emory University..."
+> "This workflow was developed for bulk and single-cell RNA-seq replication..."
 
 As long as it's clear this is ONE example, not THE requirement.
 
@@ -192,7 +192,7 @@ The template CLAUDE.md has `[YOUR PROJECT NAME]`, `[YOUR INSTITUTION]` — this 
 ### Documentation Can Reference Original Use Case
 
 Pedagogically valuable to show real-world example:
-> "Case Study: 6 lectures, 800+ slides, Beamer + Quarto + R replication"
+> "Case Study: bulk RNA-seq + scRNA-seq replication pipeline with R and Python"
 
 This shows what's POSSIBLE, not what's REQUIRED.
 
@@ -248,4 +248,4 @@ As this repository evolves, meta-governance may need updates.
 - Document with examples from multiple domains (not just our use case)
 - Review quarterly: promote generic patterns, refine specific ones
 
-**When in doubt:** Ask "Would a biology PhD student forking this repo for lab protocols benefit from this knowledge?" If yes → MEMORY.md. If no → personal-memory.md.
+**When in doubt:** Ask "Would a proteomics or metagenomics researcher forking this repo benefit from this knowledge?" If yes → MEMORY.md. If no → personal-memory.md.
