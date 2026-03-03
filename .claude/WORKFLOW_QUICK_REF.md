@@ -64,7 +64,6 @@ Repeat
 **Reporting:** Structured Markdown report with comparison tables (paper value vs. ours vs. diff)
 **Session logs:** Always (post-plan, incremental, end-of-session)
 **Replication:** Flag all near-misses (within 2× tolerance); investigate before proceeding to extensions
-**Replication:** Flag all near-misses (within 2× tolerance); investigate before proceeding to extensions
 
 ---
 
