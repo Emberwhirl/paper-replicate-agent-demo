@@ -14,8 +14,7 @@ This skill provides guidance for deep learning-based single-cell analysis using 
 1. Identify the appropriate workflow from the model/workflow tables below
 2. Read the corresponding reference file for detailed steps and code
 3. Use scripts in `scripts/` to avoid rewriting common code
-4. For installation or GPU issues, consult `references/environment_setup.md`
-5. For debugging, consult `references/troubleshooting.md`
+4. For debugging, consult `references/troubleshooting.md`
 
 ## When to Use This Skill
 
@@ -43,7 +42,6 @@ This skill provides guidance for deep learning-based single-cell analysis using 
 
 | Workflow | Reference File | Description |
 |----------|---------------|-------------|
-| Environment Setup | `references/environment_setup.md` | Installation, GPU, version info |
 | Data Preparation | `references/data_preparation.md` | Formatting data for any model |
 | scRNA Integration | `references/scrna_integration.md` | scVI/scANVI batch correction |
 | ATAC-seq Analysis | `references/atac_peakvi.md` | PeakVI for accessibility |
