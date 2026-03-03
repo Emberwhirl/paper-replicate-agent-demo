@@ -2,7 +2,7 @@
 
 **Project:** RNA-seq Empirical Replication Agent
 **Institution:** [YOUR INSTITUTION]
-**Branch:** main
+**Branch:** [YOUR BRANCH]
 
 ---
 
@@ -94,6 +94,11 @@ python scripts/quality_score.py replications/[PaperName]/R/replicate.R
 | `/commit [msg]` | Stage, commit, PR, merge |
 | `/proofread [file]` | Grammar/typo review of reports |
 | `/devils-advocate [topic]` | Challenge design decisions |
+| `/single-cell-rna-qc [data_dir]` | Single-cell QC pipeline |
+| `/scanpy-basics [data_dir]` | Scanpy scRNA-seq analysis (Python) |
+| `/kallisto-bustools-import [fastq_dir]` | Kallisto\|bustools (kb-python) count matrix import |
+| `/single-cell-integration-ingest-bbknn [adata]` | Batch integration via ingest + BBKNN |
+| `/scvi-tools [adata]` | Probabilistic single-cell modelling with scVI/scANVI |
 
 ---
 

@@ -9,7 +9,7 @@ Understanding this distinction is critical for deciding what to commit, what to 
 ## The Two Identities
 
 ### Identity 1: Working Project
-- We actively develop lecture slides, guides, and documentation
+- We actively develop replication scripts, reports, and documentation
 - We accumulate learnings specific to our setup and workflow
 - We test new features and iterate on infrastructure
 - We have institutional context (bioinformatics RNA-seq workflow, specific tools)
@@ -36,8 +36,8 @@ When creating or modifying content, ask:
 - Rules that adapt to user context (path-scoped rules)
 
 **SPECIFIC (keep local or gitignore):**
-- Machine-specific paths (`TEXINPUTS=../Preambles` on macOS)
-- Tool versions (`Quarto 1.3.x vs 1.4.x`)
+- Machine-specific paths (`STAR_INDEX=/data/genomes/GRCh38/star_index` on a compute cluster)
+- Tool versions (`scanpy 1.9.x vs 1.10.x` changed default UMAP parameters)
 - Institutional requirements (lab-specific pipeline conventions)
 - Personal preferences (90/100 quality gate for this project)
 - API keys, credentials, local workarounds
@@ -142,8 +142,8 @@ Always use R 4.3.1 with Bioconductor 3.18 for our pipeline.
 **Good (framework-oriented):**
 ```markdown
 # R Environment Rule
-Use R 4.5+ and Bioconductor 3.22+ unless the paper requires specific older versions.
-Lock versions in renv.lock for reproducibility. Configure in CLAUDE.md for your setup.
+Use a recent R release and matching Bioconductor version unless the paper requires specific older versions for reproducibility.
+Lock versions in `renv.lock` for reproducibility. Document the versions used in `CLAUDE.md` and in the script header.
 ```
 
 ### Provide Examples from Multiple Domains
@@ -248,4 +248,4 @@ As this repository evolves, meta-governance may need updates.
 - Document with examples from multiple domains (not just our use case)
 - Review quarterly: promote generic patterns, refine specific ones
 
-**When in doubt:** Ask "Would an epidemiology or proteomics researcher forking this repo benefit from this knowledge?" If yes → MEMORY.md. If no → personal-memory.md.
+**When in doubt:** Ask "Would a researcher in spatial transcriptomics, metabolomics, or proteomics forking this repo benefit from this knowledge?" If yes → MEMORY.md. If no → personal-memory.md.
