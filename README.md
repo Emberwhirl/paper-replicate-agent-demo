@@ -1,8 +1,8 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18723722.svg)](https://doi.org/10.5281/zenodo.18723722)
-
 # Bulk and Single-Cell RNA-seq Empirical Replication Agent
 
-A structured Claude Code workflow for **empirically replicating published research** using bulk and single-cell RNA-seq data. Special thanks to 朱晨 | 遗传社科研究 for providing an excellent Claude Code workflow framework. You describe a paper; Claude plans the replication approach, writes R/Python scripts, validates outputs against published targets, documents discrepancies, and reports results — like a research contractor who handles the full pipeline. When the paper introduces a novel computational method or workflow, Claude also produces a detailed, plain-language explanation of how the method works.
+A structured Claude Code workflow for **empirically replicating published research** using bulk and single-cell RNA-seq data. Special thanks to 朱晨 | 遗传社科研究 for providing an excellent Claude Code workflow framework. 
+
+You describe a paper; Claude plans the replication approach, writes R/Python scripts, validates outputs against published targets, documents discrepancies, and reports results — like a research contractor who handles the full pipeline. When the paper introduces a novel computational method or workflow, Claude also produces a detailed, plain-language explanation of how the method works.
 
 ---
 

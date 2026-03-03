@@ -248,4 +248,4 @@ As this repository evolves, meta-governance may need updates.
 - Document with examples from multiple domains (not just our use case)
 - Review quarterly: promote generic patterns, refine specific ones
 
-**When in doubt:** Ask "Would a researcher in spatial transcriptomics, metabolomics, or proteomics forking this repo benefit from this knowledge?" If yes → MEMORY.md. If no → personal-memory.md.
+**When in doubt:** Ask "Would a physician-scientist, a computational biologist, or a postdoc researcher forking this repo benefit from this knowledge?" If yes → MEMORY.md. If no → personal-memory.md.
