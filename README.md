@@ -1,6 +1,6 @@
 # Bulk and Single-Cell RNA-seq Empirical Replication Agent
 
-A structured Claude Code workflow for **empirically replicating published research** using bulk and single-cell RNA-seq data. Special thanks to 朱晨 | 遗传社科研究 for providing an excellent Claude Code workflow framework. 
+A structured Claude Code workflow for **empirically replicating published research** using bulk and single-cell RNA-seq data. Special thanks to [**朱晨 | 遗传社科研究**](https://github.com/maxwell2732/) for providing an excellent Claude Code workflow framework. 
 
 You describe a paper; Claude plans the replication approach, writes R/Python scripts, validates outputs against published targets, documents discrepancies, and reports results — like a research contractor who handles the full pipeline. When the paper introduces a novel computational method or workflow, Claude also produces a detailed, plain-language explanation of how the method works.
 
@@ -27,7 +27,7 @@ Paste a prompt like:
 
 > I want to replicate [Paper Author (Year)]. The paper is in `papers/[PaperName]/original_paper.md`. The relevant RNA-seq data is in `data/`. Please enter plan mode, read the paper, identify all empirical targets, and plan the replication.
 
-**What this does:** Claude reads the configuration files and paper, inventories the available data, identifies every table and figure to replicate, enters plan mode, drafts a step-by-step plan, waits for your approval, then implements — running scripts, verifying outputs against tolerance thresholds, and saving a validation report. If the paper introduces a novel computational method, Claude also produces a detailed plain-language explanation of that method.
+**What this does:** Claude reads the configuration files and paper, inventories the available data, identifies every table and figure to replicate, enters plan mode, drafts a step-by-step plan, waits for your approval, then implements — running scripts, verifying outputs against tolerance thresholds, and saving a validation report. If the paper introduces a novel computational method, Claude also produces a detailed plain-language explanation of that method with technical details.
 
 ---
 
@@ -154,8 +154,8 @@ Every script and report gets a score (0–100). Scores below threshold block the
 | Tool | Required For | Install |
 |------|-------------|---------|
 | [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) | Everything | `npm install -g @anthropic-ai/claude-code` |
-| R (≥ 4.2) | Replication scripts | [r-project.org](https://www.r-project.org/) |
-| Python (≥ 3.10) | Python replication scripts | [python.org](https://www.python.org/) |
+| R (≥ 4.5) | Replication scripts | [r-project.org](https://www.r-project.org/) |
+| Python (≥ 3.11) | Python replication scripts | [python.org](https://www.python.org/) |
 | [gh CLI](https://cli.github.com/) | PR workflow | `winget install GitHub.cli` (Windows) |
 | Bioconductor packages | Bulk RNA-seq: `DESeq2`, `edgeR`, `limma` | `BiocManager::install(c("DESeq2","edgeR","limma"))` |
 | Seurat / Bioconductor | scRNA-seq: `Seurat`, `SingleCellExperiment`, `scran` | `install.packages("Seurat")` / `BiocManager::install(...)` |
