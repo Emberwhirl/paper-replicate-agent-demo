@@ -23,7 +23,7 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:documentation] Always document new templates in README's "What's Included" section with purpose description. Template inventory must be complete and accurate.
 
-[LEARN:documentation] Guide must be generic (framework-oriented) not prescriptive. Provide templates with examples for multiple workflows (LaTeX, R, Python, Jupyter), let users customize. No "thou shalt" rules.
+[LEARN:documentation] Guide must be generic (framework-oriented) not prescriptive. Provide templates with examples for multiple workflows (R, Python, Julia, Jupyter), let users customize. No "thou shalt" rules.
 
 [LEARN:documentation] Date fields in frontmatter and README must reflect latest significant changes. Users check dates to assess currency.
 
@@ -33,7 +33,7 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:design] Quality standard for guide additions: useful + pedagogically strong + drives usage + leaves great impression + improves upon starting fresh + no redundancy + not slow. All 7 criteria must hold.
 
-[LEARN:design] Generic means working for any academic workflow: pure LaTeX (no Quarto), pure R (no LaTeX), Python/Jupyter, any domain (not just bioinformatics). Test recommendations across use cases.
+[LEARN:design] Generic means working for any academic workflow: pure R, Python/Jupyter, Julia, any domain (not just bioinformatics). Test recommendations across use cases.
 
 ## File Organization
 
