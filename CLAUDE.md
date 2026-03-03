@@ -61,15 +61,20 @@ my-rnaseq-agent/
 ## Commands
 
 ```bash
+## R
 # Run R replication script
 Rscript replications/[PaperName]/R/replicate.R
 
+## Python
+## CRITICAL: NEVER use bare `python` or `python3` — ALWAYS use `conda run`.
+
 # Run Python replication script
-python replications/[PaperName]/python/replicate.py
+conda run --no-capture-output -n [YOUR_CONDA_ENV] python replications/[PaperName]/python/replicate.py
 
 # Quality score
-python scripts/quality_score.py replications/[PaperName]/R/replicate.R
+conda run --no-capture-output -n [YOUR_CONDA_ENV] python scripts/quality_score.py replications/[PaperName]/R/replicate.R
 ```
+
 
 ---
 
