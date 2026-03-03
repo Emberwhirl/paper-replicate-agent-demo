@@ -1,6 +1,8 @@
 ---
 name: kallisto-bustools-import
 description: Imports kallisto/bustools (kb-python) workflow output and performs empty droplet filtering using the DropletUtils knee/inflection algorithm. Use when users have run kb count, kb-python, or kallisto/bustools and need to load the output, assess library saturation, generate knee plots, or filter empty droplets before downstream analysis.
+argument-hint: "[path to h5ad or counts_unfiltered/ directory]"
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # Kallisto/Bustools Import and Empty Droplet Filtering

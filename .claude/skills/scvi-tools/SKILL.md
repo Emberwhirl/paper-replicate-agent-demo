@@ -1,6 +1,8 @@
 ---
 name: scvi-tools
 description: Deep learning for single-cell analysis using scvi-tools. This skill should be used when users need (1) data integration and batch correction with scVI/scANVI, (2) ATAC-seq analysis with PeakVI, (3) CITE-seq multi-modal analysis with totalVI, (4) multiome RNA+ATAC analysis with MultiVI, (5) spatial transcriptomics deconvolution with DestVI, (6) label transfer and reference mapping with scANVI/scArches, (7) RNA velocity with veloVI, or (8) any deep learning-based single-cell method. Triggers include mentions of scVI, scANVI, totalVI, PeakVI, MultiVI, DestVI, veloVI, sysVI, scArches, variational autoencoder, VAE, batch correction, data integration, multi-modal, CITE-seq, multiome, reference mapping, latent space.
+argument-hint: "[path to h5ad file and model type, e.g., 'data.h5ad --model scvi']"
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # scvi-tools Deep Learning Skill
@@ -12,8 +14,7 @@ This skill provides guidance for deep learning-based single-cell analysis using 
 1. Identify the appropriate workflow from the model/workflow tables below
 2. Read the corresponding reference file for detailed steps and code
 3. Use scripts in `scripts/` to avoid rewriting common code
-4. For installation or GPU issues, consult `references/environment_setup.md`
-5. For debugging, consult `references/troubleshooting.md`
+4. For debugging, consult `references/troubleshooting.md`
 
 ## When to Use This Skill
 
@@ -41,7 +42,6 @@ This skill provides guidance for deep learning-based single-cell analysis using 
 
 | Workflow | Reference File | Description |
 |----------|---------------|-------------|
-| Environment Setup | `references/environment_setup.md` | Installation, GPU, version info |
 | Data Preparation | `references/data_preparation.md` | Formatting data for any model |
 | scRNA Integration | `references/scrna_integration.md` | scVI/scANVI batch correction |
 | ATAC-seq Analysis | `references/atac_peakvi.md` | PeakVI for accessibility |
