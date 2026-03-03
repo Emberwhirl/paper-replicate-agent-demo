@@ -10,7 +10,7 @@ Create a skill when you find yourself:
 - Repeatedly explaining the same 3+ step workflow to Claude
 - Needing domain-specific quality checks (citation style, notation consistency, lab protocols)
 - Enforcing field-specific output formats (thesis structure, journal templates, lab notebooks)
-- Coordinating multi-tool workflows (Figma → R → LaTeX, data → analysis → manuscript)
+- Coordinating multi-tool workflows (data → R → Python, data → analysis → manuscript)
 
 **Don't create a skill for:**
 - One-time tasks
@@ -380,4 +380,4 @@ When adapting this template to your domain:
 - **Purpose:** Starter for domain-specific skills
 - **Usage:** Copy to `.claude/skills/[name]/SKILL.md`, customize for your field
 
-For existing skills examples, see `.claude/skills/` directory (19 skills for LaTeX, R, Quarto, and research workflows).
+For existing skills examples, see `.claude/skills/` directory (12 skills for R, Python, and research workflows).
