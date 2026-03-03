@@ -79,7 +79,7 @@ Every script and report gets a score (0–100). Scores below threshold block the
 ## What's Included
 
 <details>
-<summary><strong>4 agents, 15 skills, 13 rules, 4 hooks</strong> (click to expand)</summary>
+<summary><strong>4 agents, 12 skills, 13 rules, 4 hooks</strong> (click to expand)</summary>
 
 ### Agents (`.claude/agents/`)
 
@@ -99,9 +99,6 @@ Every script and report gets a score (0–100). Scores below threshold block the
 | `/review-r` | Launch R code reviewer |
 | `/proofread` | Launch proofreader on a file |
 | `/review-paper` | Manuscript review: structure, bioinformatics methods, referee objections |
-| `/lit-review` | Literature search, synthesis, and gap identification |
-| `/research-ideation` | Generate research questions and empirical strategies |
-| `/interview-me` | Interactive interview to formalize a research idea |
 | `/devils-advocate` | Challenge design decisions before committing |
 | `/commit` | Stage, commit, create PR, and merge to main |
 | `/scanpy-basics` | Standard scRNA-seq analysis: QC, normalization, clustering, DE, visualization |
