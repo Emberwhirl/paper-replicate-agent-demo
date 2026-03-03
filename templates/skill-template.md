@@ -10,7 +10,7 @@ Create a skill when you find yourself:
 - Repeatedly explaining the same 3+ step workflow to Claude
 - Needing domain-specific quality checks (citation style, notation consistency, lab protocols)
 - Enforcing field-specific output formats (thesis structure, journal templates, lab notebooks)
-- Coordinating multi-tool workflows (Figma → R → LaTeX, data → analysis → manuscript)
+- Coordinating multi-tool workflows (data → R → Python, data → analysis → manuscript)
 
 **Don't create a skill for:**
 - One-time tasks
@@ -105,9 +105,9 @@ description: Generates structured lab notebook entries from experimental notes. 
 description: Validates thesis chapter structure against institutional requirements. Use when user asks to "check chapter format", "validate thesis structure", or when editing thesis .tex or .docx files. Verifies required sections, heading levels, and citation density.
 ```
 
-**Econometric Specification Review (Economics):**
+**Bioinformatics Pipeline Review (Computational Biology):**
 ```yaml
-description: Reviews econometric specifications for common errors. Use when user shares regression code in R or Stata, or asks to "check model spec", "review estimation". Validates: standard error clustering, fixed effects structure, missing covariates, and replication commands.
+description: Reviews bioinformatics analysis pipelines for common errors. Use when user shares analysis code in R or Python, or asks to "check pipeline", "review analysis". Validates: normalization methods, batch correction, multiple testing adjustment, and reproducibility settings.
 ```
 
 ### Bad Examples (Too Generic)
@@ -352,7 +352,7 @@ When adapting this template to your domain:
 - [ ] Replace example trigger phrases with your field's terminology
 - [ ] Add domain-specific file types (`.R`, `.py`, `.ipynb`, `.tex`, `.stan`)
 - [ ] Include field conventions (notation, formatting, citation styles)
-- [ ] Reference standard tools (`ggplot2`, `pandas`, `TikZ`, `Stata`)
+- [ ] Reference standard tools (`ggplot2`, `pandas`, `scanpy`, `DESeq2`)
 - [ ] Add common error messages from your toolchain
 - [ ] Include institutional requirements (thesis formats, journal templates)
 
@@ -380,4 +380,4 @@ When adapting this template to your domain:
 - **Purpose:** Starter for domain-specific skills
 - **Usage:** Copy to `.claude/skills/[name]/SKILL.md`, customize for your field
 
-For existing skills examples, see `.claude/skills/` directory (19 skills for LaTeX, R, Quarto, and research workflows).
+For existing skills examples, see `.claude/skills/` directory (12 skills for R, Python, and research workflows).

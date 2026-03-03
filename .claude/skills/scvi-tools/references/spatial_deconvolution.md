@@ -36,7 +36,9 @@ print(f"scvi-tools version: {scvi.__version__}")
 
 ```python
 # Load Visium data
-adata_spatial = sc.read_visium("spaceranger_output/")
+# Note: sc.read_visium is deprecated in scanpy >=1.10; use squidpy.read.visium instead
+# adata_spatial = sq.read.visium("spaceranger_output/")  # preferred in squidpy
+adata_spatial = sc.read_visium("spaceranger_output/")  # still works with deprecation warning
 
 # Check structure
 print(f"Spots: {adata_spatial.n_obs}")

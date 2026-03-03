@@ -144,11 +144,11 @@ Don't create articles for:
 
 ## Examples from Different Domains
 
-### Economics/Econometrics
+### Bioinformatics/Computational Biology
 
-1. **Replication-First:** All empirical claims must have accompanying R/Stata scripts
-2. **Data Provenance:** All datasets documented with source, date, and processing steps
-3. **Robust Standard Errors:** Default to clustered SEs; justify if not used
+1. **Replication-First:** All empirical claims must have accompanying R/Python scripts
+2. **Data Provenance:** All datasets documented with source, accession, and processing steps
+3. **Reproducible Environment:** Package versions locked; random seeds set for all stochastic steps
 
 ### Biology/Wet Lab
 

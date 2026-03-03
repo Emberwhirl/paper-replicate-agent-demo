@@ -91,9 +91,6 @@ python scripts/quality_score.py replications/[PaperName]/R/replicate.R
 | `/data-analysis [dataset]` | End-to-end R analysis |
 | `/review-r [file]` | R code quality review |
 | `/review-paper [file]` | Manuscript review |
-| `/lit-review [topic]` | Literature search + synthesis |
-| `/research-ideation [topic]` | Research questions + strategies |
-| `/interview-me [topic]` | Interactive research interview |
 | `/commit [msg]` | Stage, commit, PR, merge |
 | `/proofread [file]` | Grammar/typo review of reports |
 | `/devils-advocate [topic]` | Challenge design decisions |

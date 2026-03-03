@@ -1,6 +1,8 @@
 ---
 name: single-cell-integration-ingest-bbknn
 description: Integrates multiple single-cell RNA-seq datasets to correct batch effects while preserving biological variation. Use when users need to combine datasets from different experiments, map query data onto a reference, transfer cell type labels, or visualize batch-corrected embeddings. Supports asymmetric integration with ingest (reference-based label transfer) and symmetric integration with BBKNN (batch-balanced neighbors). For deep learning integration methods, use scvi-tools instead.
+argument-hint: "[reference.h5ad query.h5ad or combined.h5ad --method bbknn]"
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # Single-Cell RNA-seq Data Integration
@@ -22,7 +24,7 @@ Use when users:
 **Supported integration methods:**
 
 - `sc.tl.ingest` - Asymmetric, reference-based integration with label transfer
-- `sc.external.pp.bbknn` - Symmetric batch-balanced k-nearest neighbors
+- `bbknn.bbknn` - Symmetric batch-balanced k-nearest neighbors (via the `bbknn` package)
 
 **When to use other skills instead:**
 

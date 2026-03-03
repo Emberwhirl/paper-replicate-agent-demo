@@ -16,8 +16,8 @@ Understanding this distinction is critical for deciding what to commit, what to 
 
 ### Identity 2: Public Template
 - Others fork this repo to bootstrap their own academic workflows
-- They use different domains (epidemiology, proteomics, metagenomics, not just RNA-seq)
-- They use different tools (pure LaTeX, pure R, Python, Jupyter)
+- They use different domains (epidemiology, spatial transcriptomics, metabolomics, proteomics, not just RNA-seq)
+- They use different tools (pure R, Python, Julia, Jupyter, MATLAB)
 - They need generic patterns, not our specific decisions
 
 ---
@@ -248,4 +248,4 @@ As this repository evolves, meta-governance may need updates.
 - Document with examples from multiple domains (not just our use case)
 - Review quarterly: promote generic patterns, refine specific ones
 
-**When in doubt:** Ask "Would a proteomics or metagenomics researcher forking this repo benefit from this knowledge?" If yes → MEMORY.md. If no → personal-memory.md.
+**When in doubt:** Ask "Would an epidemiology or proteomics researcher forking this repo benefit from this knowledge?" If yes → MEMORY.md. If no → personal-memory.md.
