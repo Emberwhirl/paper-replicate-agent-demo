@@ -303,3 +303,12 @@ plt.savefig('integration_comparison.png', dpi=150)
 - `scanpy-basics` skill: For standard single-cell analysis workflows
 - `scvi-tools` skill: For deep learning integration methods (scVI, scANVI)
 - `single-cell-rna-qc` skill: For quality control before integration
+
+## Software dependencies & licensing
+
+This skill *orchestrates* third-party open-source libraries that are **not** redistributed here — install them yourself. They remain under their own upstream licenses:
+
+- **scanpy**, **anndata** — BSD-3-Clause
+- **bbknn** — MIT
+
+The skill itself (this documentation, the scripts, and the workflow) is MIT-licensed; see the `LICENSE` file in the skill root.

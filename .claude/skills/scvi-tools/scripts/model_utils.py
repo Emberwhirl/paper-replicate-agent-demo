@@ -4,6 +4,12 @@ Utility functions for scvi-tools model training and evaluation.
 
 Usage:
     from model_utils import prepare_adata, train_scvi, evaluate_integration
+
+Provenance:
+    Derived from the scvi-tools skill in anthropics/life-sciences (Apache-2.0).
+    Modified in 2026 by Emberwhirl: get_mito_genes() was rewritten to use a
+    case-insensitive var_names.str.upper().str.startswith("MT-"). See the
+    skill's NOTICE file. Modifications licensed under the Apache License, 2.0.
 """
 
 import numpy as np

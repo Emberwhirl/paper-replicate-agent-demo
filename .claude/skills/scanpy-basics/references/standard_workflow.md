@@ -319,3 +319,11 @@ If batch effects are observed in UMAP, consider integration methods:
 8. Visualize QC metrics on UMAP to identify problematic clusters
 9. Consider pseudo-bulking for differential expression statistics
 10. Save intermediate results at key steps
+
+## Software dependencies & licensing
+
+This skill *orchestrates* third-party open-source libraries that are **not** redistributed here — install them yourself. They remain under their own upstream licenses:
+
+- **scanpy**, **anndata** — BSD-3-Clause
+
+The skill itself (this documentation, the scripts, and the workflow) is MIT-licensed; see the `LICENSE` file in the skill root. Its workflow, structure, and examples are adapted from the official [scanpy tutorials](https://scanpy.readthedocs.io/) and [scverse](https://scverse.org/) documentation (BSD-3-Clause).

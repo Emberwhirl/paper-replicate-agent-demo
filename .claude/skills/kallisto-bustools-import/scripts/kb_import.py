@@ -15,6 +15,15 @@ This script:
 4. Generates knee plot using DropletUtils algorithm and detects thresholds
 5. Filters empty droplets using inflection threshold (more permissive)
 6. Saves filtered data and summary statistics
+
+Third-party dependencies & licensing
+-------------------------------------
+This skill *orchestrates* external open-source tools that are NOT redistributed
+here -- install them yourself. They remain under their own upstream licenses:
+  - kb-python (kallisto | bustools) -- BSD-2-Clause
+  - DropletUtils                    -- GPL-3.0
+  - anndata                         -- BSD-3-Clause
+The skill code itself is MIT-licensed; see the LICENSE file in the skill root.
 """
 
 import argparse

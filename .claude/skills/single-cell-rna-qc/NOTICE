@@ -1,0 +1,31 @@
+single-cell-rna-qc skill — NOTICE
+=================================
+
+This skill is a derivative work of the "single-cell-rna-qc" skill from
+Anthropic's life-sciences skill collection:
+
+    https://github.com/anthropics/life-sciences/tree/main/single-cell-rna-qc
+
+Original work Copyright (c) Anthropic, PBC.
+Licensed under the Apache License, Version 2.0 (the "License"); the full
+license text is reproduced in the accompanying LICENSE file. You may also
+obtain a copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+(The upstream repository ships the Apache-2.0 license text without an explicit
+copyright line; the original work is attributed here to its publisher,
+Anthropic, PBC.)
+
+Modifications
+-------------
+Modified in 2026 by Emberwhirl for the RNA-seq Empirical Replication Agent.
+Notable changes from the upstream version:
+
+  - SKILL.md: rewrote the `description` and "When to Use This Skill" guidance so
+    the skill defers to `scanpy-basics` for standard QC and triggers only for
+    specialized MAD-based outlier detection (skill routing within this workflow).
+  - Added the `argument-hint` and `allowed-tools` frontmatter fields.
+
+All modifications are released under the Apache License, Version 2.0, consistent
+with the original work.

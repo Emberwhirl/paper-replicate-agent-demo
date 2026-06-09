@@ -1,0 +1,35 @@
+scvi-tools skill — NOTICE
+=========================
+
+This skill is a derivative work of the "scvi-tools" skill from Anthropic's
+life-sciences skill collection:
+
+    https://github.com/anthropics/life-sciences/tree/main/scvi-tools
+
+Original work Copyright (c) Anthropic, PBC.
+Licensed under the Apache License, Version 2.0 (the "License"); the full
+license text is reproduced in the accompanying LICENSE file. You may also
+obtain a copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+(The upstream repository ships the Apache-2.0 license text without an explicit
+copyright line; the original work is attributed here to its publisher,
+Anthropic, PBC.)
+
+Modifications
+-------------
+Modified in 2026 by Emberwhirl for the RNA-seq Empirical Replication Agent.
+Notable changes from the upstream version:
+
+  - SKILL.md: added the `argument-hint` and `allowed-tools` frontmatter fields.
+  - Removed the `references/environment_setup.md` reference file together with
+    its entries in the "How to Use This Skill" and workflow-reference tables.
+  - scripts/model_utils.py: rewrote the `get_mito_genes()` mitochondrial-gene
+    mask helper from the upstream prefix-OR logic
+    (`startswith("MT-") | startswith("mt-") | startswith("Mt-")`) to a
+    case-insensitive `var_names.str.upper().str.startswith("MT-")`, and updated
+    its docstring accordingly.
+
+All modifications are released under the Apache License, Version 2.0, consistent
+with the original work.
