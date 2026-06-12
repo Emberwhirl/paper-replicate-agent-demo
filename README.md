@@ -6,7 +6,7 @@ You describe a paper. Claude reads it, identifies every table and figure to repr
 
 The goal is simple: take the friction out of reproducing a paper, so your time goes to the science instead of the plumbing.
 
-> Forked from and built on the excellent UK Biobank replication workflow by [**maxwell2732 (朱晨 Chen Zhu | 遗传社科研究)**](https://github.com/maxwell2732/), then re-targeted for RNA-seq and extended with a suite of single-cell skills built on the [scverse](https://scverse.org/) ecosystem. Heartfelt thanks to the original author for sharing such a thoughtful framework.
+> Forked from and built on the excellent UK Biobank replication workflow version 1.0.0 by [**maxwell2732 (朱晨 Chen Zhu | 遗传社科研究)**](https://github.com/maxwell2732/), then re-targeted for RNA-seq and extended with a suite of single-cell skills built on the [scverse](https://scverse.org/) ecosystem. Heartfelt thanks to the original author for sharing such a thoughtful framework.
 
 ---
 
@@ -176,7 +176,7 @@ The single-cell skills are the main RNA-seq addition to the original framework; 
 
 Create a `data/` directory at the project root and place datasets there. It is **gitignored** (data can be large or controlled-access).
 
-1. **Public data:** download from GEO (e.g. `GEOquery::getGEO("GSExxxxxx")`) or SRA; record accession IDs in your scripts.
+1. **Public data:** download from public repositories (e.g., ENA, GSA, SRA, etc.); record accession IDs in your scripts.
 2. **Counts / matrices:** put them in `data/[PaperName]/` with a short README describing the source.
 3. **Genome annotation:** record the genome assembly and GTF version (e.g. Ensembl 110, GRCh38) in the script header.
 4. **Large files:** consider symlinking `data/` to external storage if files exceed GitHub limits.
@@ -208,10 +208,8 @@ paper-replicate-agent-demo/
 
 This workflow is released under the **MIT License**; the bundled skills are licensed individually, according to where each one came from:
 
-- **Framework skills** (`replicate-paper`, `data-analysis`, `review-r`, `review-paper`, `proofread`, `devils-advocate`, `commit`) — **MIT**, co-crediting **maxwell2732 (朱晨 Chen Zhu | 遗传社科研究)**, who created the UK Biobank workflow this project was forked from, and **Emberwhirl**, who re-targeted it for RNA-seq.
-- **Single-cell skills built here** (`scanpy-basics`, `single-cell-integration-ingest-bbknn`, `kallisto-bustools-import`) — **MIT © Emberwhirl**. They build on the open [scverse](https://scverse.org/) ecosystem; `scanpy-basics`, for instance, is adapted from the official scanpy tutorials (BSD-3-Clause).
+- **Framework skills** (`replicate-paper`, `data-analysis`, `review-r`, `review-paper`, `proofread`, `devils-advocate`, `commit`) — **MIT**, co-crediting [**maxwell2732 (朱晨 Chen Zhu | 遗传社科研究)**](https://github.com/maxwell2732/), who created the UK Biobank workflow version 1.0.0 that this project was forked from.
+- **Single-cell skills built here** (`scanpy-basics`, `single-cell-integration-ingest-bbknn`, `kallisto-bustools-import`) — **MIT**. They build on the open [scverse](https://scverse.org/) ecosystem.
 - **Skills adapted from Anthropic's life-sciences collection** (`scvi-tools`, `single-cell-rna-qc`) — distributed under their upstream **Apache License 2.0**, each with a `NOTICE` file recording the source ([anthropics/life-sciences](https://github.com/anthropics/life-sciences)) and the local changes.
 
-The single-cell skills *orchestrate* third-party open-source software — scanpy, scvi-tools, bbknn, kb-python, DropletUtils, and friends — which is installed separately rather than bundled here. Those tools keep their own licenses (mostly permissive, a few under other terms); each skill notes its relevant dependencies in its own files.
-
-Use it freely for your research — and a nod to the upstream authors (Chen Zhu, the scverse community, and Anthropic) is always appreciated. 🙏
+The single-cell skills *orchestrate* third-party open-source softwares which are installed separately rather than bundled here. Those tools keep their own licenses (mostly permissive, a few under other terms); each skill notes its relevant dependencies in its own files.

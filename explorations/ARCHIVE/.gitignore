@@ -1,0 +1,3 @@
+# Keep this directory in version control, but ignore its (generated/scratch) contents.
+*
+!.gitignore
