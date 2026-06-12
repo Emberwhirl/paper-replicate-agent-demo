@@ -118,7 +118,7 @@ conda run --no-capture-output -n [YOUR_CONDA_ENV] python scripts/quality_score.p
 ## RNA-seq Data Notes
 
 - **Data location:** `data/` (gitignored — can be large or controlled-access)
-- **Public data:** Download from GEO (accession GSExxxxxx) or SRA; document accession IDs in replication scripts
+- **Public data:** Download from public repositories (e.g., ENA, GSA, SRA, etc.); document accession IDs in replication scripts
 - **Genome/annotation:** Record genome assembly (e.g., GRCh38) and GTF version (e.g., Ensembl 110) used for alignment/quantification
 - **Gene IDs:** Use Ensembl gene IDs as primary keys; map to gene symbols only for display; verify ID versions match between paper and your annotation
 - **Normalization:** Match paper's normalization method exactly (raw counts, CPM, TPM, VST, log-normalized); document deviations

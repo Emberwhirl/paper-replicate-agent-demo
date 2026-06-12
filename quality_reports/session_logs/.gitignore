@@ -1,2 +1,4 @@
-# Keep this directory under version control even when empty.
-# Files added here are tracked normally (this .gitignore ignores nothing).
+# Session logs are local-only working notes (one per session).
+# Keep this directory under version control, but never track the logs here —
+# they stay on your machine only and must not be committed to this branch.
+*.md
